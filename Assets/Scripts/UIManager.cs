@@ -1,20 +1,19 @@
 using UnityEngine;
 using TMPro;
-using System.Security.Cryptography.X509Certificates;
 
 public class UIManager : MonoBehaviour
 {
-    RouletteManager rm;
-    // [SerializeField]
+    private RouletteManager rouletteManager;
     [SerializeField] private TextMeshProUGUI[] text;
     [SerializeField] private GameObject button;
+
+
     void Start()
     {
-        rm = this.gameObject.GetComponent<RouletteManager>();
+        rouletteManager = this.gameObject.GetComponent<RouletteManager>();
     }
-    // objects
     
-    public void SetText(string str, int num)
+    public void SetTextYomikata(Yomikata yomi, int num)
     {
         
         // early return
@@ -22,12 +21,36 @@ public class UIManager : MonoBehaviour
         if(num < 0 || num >= text.Length) return;
         if(text[num] == null) return;
 
-        text[num].text = str;
+        switch(yomi)
+        {
+            case Yomikata.o:
+            text[num].text = "お";
+            break;
+
+            case Yomikata.on:
+            text[num].text = "おん";
+            break;
+
+            case Yomikata.go:
+            text[num].text = "ご";
+            break;
+
+            case Yomikata.gyo:
+            text[num].text = "ぎょ";
+            break;
+
+            case Yomikata.mi:
+            text[num].text = "み";
+            break;
+
+            default:
+            break;
+        }
     }
 
     public void ClickRouletteButton()
     {
-        rm.CLickRouletteButton();
+        rouletteManager.StartRoulette();
     }
 
 
@@ -39,5 +62,30 @@ public class UIManager : MonoBehaviour
     public void ShowRouletteButton()
     {
         button.SetActive(true);
+    }
+
+    public void ShowSpecificCondition(SpecificCondition condition)
+    {
+        switch(condition)
+        {
+            case SpecificCondition.Omiotsuke:
+            Debug.Log("omiotsuke");
+            break;
+
+            case SpecificCondition.Sakanakun:
+            Debug.Log("sakanakun");
+            break;
+
+            case SpecificCondition.Ear:     
+            Debug.Log("ear");
+            break;
+            
+            case SpecificCondition.Zorome:
+            Debug.Log("zorome");
+            break;
+
+            default:
+            break;
+        }
     }
 }
