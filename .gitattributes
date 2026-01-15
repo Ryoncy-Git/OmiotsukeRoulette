@@ -1,0 +1,10 @@
+# Unity
+*.meta text eol=lf
+*.cs   text eol=lf
+*.shader text eol=lf
+
+# Binary
+*.png  binary
+*.jpg  binary
+*.wav  binary
+*.fbx  binary

@@ -90,3 +90,5 @@ Il2CppOutputProject/
 # Coverage
 # =========================
 Coverage/
+
+Packages/com.unity.inputsystem/
