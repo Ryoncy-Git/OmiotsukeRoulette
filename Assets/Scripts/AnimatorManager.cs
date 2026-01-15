@@ -22,7 +22,7 @@ public class AnimatorManager : MonoBehaviour
 
         for (int i = num; i < 3; i++) // result.length = 3
         {   
-            uiManager.SetTextYomikata(candidate, i);
+            uiManager.SetTextYomikataDummy(candidate, i);
         }
     }
 

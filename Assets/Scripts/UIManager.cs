@@ -5,7 +5,9 @@ public class UIManager : MonoBehaviour
 {
     private RouletteManager rouletteManager;
     [SerializeField] private TextMeshProUGUI[] text;
-    [SerializeField] private GameObject button;
+    [SerializeField] private TextMeshProUGUI[] dummys;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject inMenuObject;
 
 
     void Start()
@@ -13,7 +15,7 @@ public class UIManager : MonoBehaviour
         rouletteManager = this.gameObject.GetComponent<RouletteManager>();
     }
     
-    public void SetTextYomikata(Yomikata yomi, int num)
+    public void SetTextYomikata(Yomikata yomi, int num)     
     {
         
         // early return
@@ -48,6 +50,53 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetTextYomikataDummy(Yomikata yomi, int num)     
+    {
+        
+        // early return
+        if(dummys == null) return;
+        if(num < 0 || num >= dummys.Length) return;
+        if(dummys[num] == null) return;
+
+        switch(yomi)
+        {
+            case Yomikata.o:
+            dummys[num].text = "お";
+            break;
+
+            case Yomikata.on:
+            dummys[num].text = "おん";
+            break;
+
+            case Yomikata.go:
+            dummys[num].text = "ご";
+            break;
+
+            case Yomikata.gyo:
+            dummys[num].text = "ぎょ";
+            break;
+
+            case Yomikata.mi:
+            dummys[num].text = "み";
+            break;
+
+            default:
+            break;
+        }
+    }
+
+    public void HideDummys(int i)
+    {
+        dummys[i].gameObject.SetActive(false);
+        text[i].gameObject.SetActive(true);  
+    }
+
+    public void ShowDummys(int i)
+    {
+        dummys[i].gameObject.SetActive(true);
+        text[i].gameObject.SetActive(false); 
+    }
+
     public void ClickRouletteButton()
     {
         rouletteManager.StartRoulette();
@@ -56,12 +105,12 @@ public class UIManager : MonoBehaviour
 
     public void HideRouletteButton()
     {
-        button.SetActive(false);
+        startButton.SetActive(false);
     }
 
     public void ShowRouletteButton()
     {
-        button.SetActive(true);
+        startButton.SetActive(true);
     }
 
     public void ShowSpecificCondition(SpecificCondition condition)
@@ -69,23 +118,28 @@ public class UIManager : MonoBehaviour
         switch(condition)
         {
             case SpecificCondition.Omiotsuke:
-            Debug.Log("omiotsuke");
+            Debug.Log("-----------omiotsuke");
             break;
 
             case SpecificCondition.Sakanakun:
-            Debug.Log("sakanakun");
+            Debug.Log("-------------sakanakun");
             break;
 
             case SpecificCondition.Ear:     
-            Debug.Log("ear");
+            Debug.Log("---------------ear");
             break;
             
             case SpecificCondition.Zorome:
-            Debug.Log("zorome");
+            Debug.Log("---------------zorome");
             break;
 
             default:
             break;
         }
+    }
+
+    public void ClickMenuButton(bool status)
+    {
+        inMenuObject.SetActive(status);
     }
 }

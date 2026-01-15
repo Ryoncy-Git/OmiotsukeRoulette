@@ -29,7 +29,7 @@ public class RouletteManager : MonoBehaviour
         // 乱数を取得
         for(int i = 0; i < result.Length; i++)
         {
-            result[i] = (Yomikata)Random.Range(0, 6); // 6 == Yomikata.Length
+            result[i] = (Yomikata)Random.Range(1, 6); // 6 == Yomikata.Length
         }        
 
         // 数値の初期化
@@ -41,6 +41,10 @@ public class RouletteManager : MonoBehaviour
 
         // ルーレットボタンを無効化
         uiManager.HideRouletteButton();
+        for(int i = 0; i < 3; i++)
+        {
+            uiManager.ShowDummys(i);
+        }
     }
 
     public void StopRoulette()
@@ -54,6 +58,7 @@ public class RouletteManager : MonoBehaviour
         // 次のスロットを停止して結果を表示
         animatorManager.StopSlot(stopCounter);
         uiManager.SetTextYomikata(result[stopCounter], stopCounter);
+        uiManager.HideDummys(stopCounter);
 
         stopCounter++;
 
@@ -64,6 +69,7 @@ public class RouletteManager : MonoBehaviour
             // state = AppState.End;
             state = AppState.Wait;
             uiManager.ShowRouletteButton();
+            
             // 条件によって特殊演出を入れたい
             CheckSpecificCondition();
         }
@@ -89,5 +95,7 @@ public class RouletteManager : MonoBehaviour
         {
             uiManager.ShowSpecificCondition(SpecificCondition.Zorome);
         }
+
+        // Debug.Log(result[0].ToString() + result[1].ToString() + result[2].ToString());
     }
 }
