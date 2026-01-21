@@ -2,34 +2,20 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    [SerializeField]private GameObject managers;
-    private Yomikata candidate;
     static RouletteManager rouletteManager;
     static UIManager uiManager;
-    private Animator animator;
-    private int yomikataSize = 6;
+    [SerializeField] private Animator animator;
 
     void Start()
     {
-        rouletteManager = managers.GetComponent<RouletteManager>();
-        animator = this.gameObject.GetComponent<Animator>();
-        uiManager = managers.GetComponent<UIManager>();
-    }
-
-    public void ShowNextCandidate(int num)
-    {
-        candidate = (Yomikata)(((int)candidate + 1) % yomikataSize);
-
-        for (int i = num; i < 3; i++) // result.length = 3
-        {   
-            uiManager.SetTextYomikataDummy(candidate, i);
-        }
+        rouletteManager = this.gameObject.GetComponent<RouletteManager>();
+        uiManager = this.gameObject.GetComponent<UIManager>();
     }
 
     public void StopSlot(int i)
     {
         switch(i)
-        {
+        {           
             case 0:
             animator.SetTrigger("Stop-0");
             break;
@@ -45,6 +31,8 @@ public class AnimatorManager : MonoBehaviour
             default:
             break;
         }
+
+        animator.SetTrigger("PushCamera");
     }
 
     public void StartRoulette()
@@ -57,8 +45,9 @@ public class AnimatorManager : MonoBehaviour
         // animator.SetTrigger("Stop-1");
     }
 
-    public void EmptyFunction()
+    public void ShowResult()
     {
-        
+        animator.SetTrigger("Result");
     }
+    
 }

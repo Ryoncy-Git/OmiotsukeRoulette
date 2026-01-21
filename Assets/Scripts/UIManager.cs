@@ -1,18 +1,29 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     private RouletteManager rouletteManager;
+    private AudioManager audioManager;
+    private AnimatorManager animatorManager;
     [SerializeField] private TextMeshProUGUI[] text;
     [SerializeField] private TextMeshProUGUI[] dummys;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject inMenuObject;
+    [SerializeField] private GameObject inEndRoulette;
+    [SerializeField] private Slider slider;
+    [SerializeField] private GameObject Audio;
 
 
     void Start()
     {
         rouletteManager = this.gameObject.GetComponent<RouletteManager>();
+        audioManager = Audio.gameObject.GetComponent<AudioManager>();
+        animatorManager = this.gameObject.GetComponent<AnimatorManager>();
+
+        inMenuObject.SetActive(false);
+        inEndRoulette.SetActive(false);
     }
     
     public void SetTextYomikata(Yomikata yomi, int num)     
@@ -141,5 +152,15 @@ public class UIManager : MonoBehaviour
     public void ClickMenuButton(bool status)
     {
         inMenuObject.SetActive(status);
+    }
+
+    public void ChangeMasterVolume()
+    {
+        audioManager.ChangeMasterVolume(slider.value);
+    }
+
+    public void ShowResult()
+    {
+        inEndRoulette.SetActive(true);
     }
 }

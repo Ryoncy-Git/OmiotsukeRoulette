@@ -23,7 +23,7 @@ public class InuputManager : MonoBehaviour
             }
             else if(rouletteManager.state == AppState.End)
             {
-                rouletteManager.StopRoulette();
+                // rouletteManager.StopRoulette();
             }
         }
     }

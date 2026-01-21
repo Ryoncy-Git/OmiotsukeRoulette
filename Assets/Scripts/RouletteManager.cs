@@ -5,10 +5,12 @@ public class RouletteManager : MonoBehaviour
 {
     //Object 
     [SerializeField] private GameObject UIs;
+    [SerializeField] private GameObject Audio;
 
     // instaces
     static UIManager uiManager;
     static AnimatorManager animatorManager;
+    static AudioManager audioManager;
 
     // variants
     private Yomikata[] result = new Yomikata[3];
@@ -18,9 +20,12 @@ public class RouletteManager : MonoBehaviour
     void Start()
     {
         uiManager = this.gameObject.GetComponent<UIManager>();
-        animatorManager = UIs.GetComponent<AnimatorManager>();
+        animatorManager = this.gameObject.GetComponent<AnimatorManager>();
+        audioManager = Audio.GetComponent<AudioManager>();
         state = AppState.Wait;
         stopCounter = 0;
+
+        audioManager.PlayBGM();
     }
 
     public void StartRoulette()
@@ -47,18 +52,13 @@ public class RouletteManager : MonoBehaviour
         }
     }
 
-    public void StopRoulette()
-    {
-        state = AppState.Wait;
-        uiManager.ShowRouletteButton();
-    }
-
     public void StopNextSlot()
     {
         // 次のスロットを停止して結果を表示
         animatorManager.StopSlot(stopCounter);
         uiManager.SetTextYomikata(result[stopCounter], stopCounter);
         uiManager.HideDummys(stopCounter);
+        audioManager.PlaySE(stopCounter);
 
         stopCounter++;
 
@@ -72,12 +72,16 @@ public class RouletteManager : MonoBehaviour
             
             // 条件によって特殊演出を入れたい
             CheckSpecificCondition();
+
+            // ドカベン文字でリザルト表示したい
+            uiManager.ShowResult();
+            animatorManager.ShowResult();
+            Debug.Log("どぁべん表示");
         }
     }
 
     private void CheckSpecificCondition()
     {
-        // まだ個々の判定が不安定なので要修正
         if (result[0] == Yomikata.o && result[1] == Yomikata.mi && result[2] == Yomikata.o)
         {
             // おみおつけ完成
