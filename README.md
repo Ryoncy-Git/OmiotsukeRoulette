@@ -1,7 +1,3 @@
-### README
-![ゲーム概要](Assets/!ForReadMe/discription1.png)
-![想定しているゲーム画面](Assets/!ForReadMe/discription2.png)
-
 ## 概要
 御御御付（おみおつけ）の「御」の字の読み方をルーレット形式で決定するゲームを作りました。  
 ユーモアとアニメーションを意識して開発しています。
@@ -15,6 +11,10 @@
 
 ## 実装環境
 Unity6000.3.2f1
+
+## 初期案
+![ゲーム概要](Assets/!ForReadMe/discription1.png)
+![想定しているゲーム画面](Assets/!ForReadMe/discription2.png)
 
 ## 実装時のこだわり
 ユーモアをとにかく大切にしています。できるだけコミカルに見せるため、テクスチャやUI、アニメーションにこだわっています。  
