@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class AnimatorUIs : MonoBehaviour
+public class AnimatorReciever : MonoBehaviour
 {
     // 今思うとAnimatorRecieverとかって名前つけたほうが良かったかも
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private AudioManager audioManager;
     private Yomikata candidate;
 
     public void EmptyFunction()
@@ -20,4 +21,9 @@ public class AnimatorUIs : MonoBehaviour
             uiManager.SetTextYomikataDummy(candidate, i);
         }
     }      
+
+    public void PlaySEResult()
+    {
+        audioManager.PlaySEResult();
+    }
 }
