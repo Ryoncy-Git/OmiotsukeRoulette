@@ -32,22 +32,11 @@ public class AnimatorManager : MonoBehaviour
             break;
         }
 
-        animator.SetTrigger("PushCamera");
+        // animator.SetTrigger("PushCamera");
     }
 
     public void StartRoulette()
     {
         animator.SetTrigger("Start");
     }
-
-    public void StopRoulette()
-    {
-        // animator.SetTrigger("Stop-1");
-    }
-
-    public void ShowResult()
-    {
-        animator.SetTrigger("Result");
-    }
-    
 }

@@ -163,4 +163,10 @@ public class UIManager : MonoBehaviour
     {
         inEndRoulette.SetActive(true);
     }
+
+    public void HideResult()
+    {
+        inEndRoulette.SetActive(false);
+        rouletteManager.ReadyForNextRoulette();
+    }
 }

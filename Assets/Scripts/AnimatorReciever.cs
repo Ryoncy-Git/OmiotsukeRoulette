@@ -26,4 +26,15 @@ public class AnimatorReciever : MonoBehaviour
     {
         audioManager.PlaySEResult();
     }
+
+
+    public void ShowResult()
+    {
+        uiManager.ShowResult();
+    }
+
+    public void HideResult()
+    {
+        uiManager.HideResult();
+    }
 }

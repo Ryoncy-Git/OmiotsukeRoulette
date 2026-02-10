@@ -66,18 +66,15 @@ public class RouletteManager : MonoBehaviour
         // 3つすべて回し終わっていたら
         if(stopCounter == result.Length)
         {
-            // state = AppState.End;
-            state = AppState.Wait;
-            uiManager.ShowRouletteButton();
-            
-            // 条件によって特殊演出を入れたい
             CheckSpecificCondition();
-
-            // ドカベン文字でリザルト表示したい
-            uiManager.ShowResult();
-            animatorManager.ShowResult();
-            Debug.Log("どぁべん表示");
+            state = AppState.End;
         }
+    }
+
+    public void ReadyForNextRoulette()
+    {
+        state = AppState.Wait;
+        uiManager.ShowRouletteButton();
     }
 
     private void CheckSpecificCondition()

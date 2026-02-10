@@ -24,6 +24,7 @@ public class InuputManager : MonoBehaviour
             else if(rouletteManager.state == AppState.End)
             {
                 // rouletteManager.StopRoulette();
+                // リザルト表示をスキップする機能を付けたい
             }
         }
     }
